@@ -14,6 +14,7 @@ contracts; use historical `docs/pilot.md` only for a specific Polygon behavior.
 | Upload/recovery/export | `src/cpplib/sync.py`, targeted recovery/export tests |
 | Agent onboarding | `AGENTS.md`, the specific mode guide |
 | README table | `src/cpplib/catalog.py`, generated marker block at the end of README |
+| Tree/graph generator helpers | `include/testlib_ext.h`, `tests/testlib_ext.cpp`, `docs/generators.md` |
 
 Commands use stdlib Python 3.11+ and the installed C++17 compiler. The process
 runner targets POSIX systems; Windows users should use WSL. Keep offline checks

@@ -14,6 +14,8 @@ test input and answer checked against the local data. It also grants the
 
 You need Python 3.11+, `g++` with C++17 support, and Linux (or WSL).
 There are no third-party Python runtime dependencies.
+Install GNU `time` for accurate peak-memory measurements; without it the CLI
+reports RSS as unavailable. On Debian/Ubuntu it is provided by the `time` package.
 
 ```bash
 git clone https://github.com/akaviani05/cp-problem-library.git
@@ -73,6 +75,8 @@ The [plain template](templates/plain) includes a seeded generator scaffold,
 strict validator scaffold, a working whitespace-ignoring token checker, accepted
 and rejected solution slots, statement fragments, sample folders, and fixture
 formats. It stays a draft until you complete the problem-specific parts.
+Generators can reuse the [tree and graph helpers](docs/generators.md) for
+permutations, tree shapes, label shuffling, and distinct-edge graph sampling.
 
 `verify` checks validator/checker fixtures, generator determinism, all generated
 inputs, samples, accepted solutions against an independent oracle, intentionally

@@ -65,6 +65,10 @@ inf.readSpace(); inf.readEoln(); inf.readEof();
 ensuref(condition, "constraint explanation");
 ```
 
+For tree/graph generators, use `testlib_ext.h` and the function table/example in
+`docs/generators.md`; do not reimplement the shared shapes or graph sampling.
+Helpers use zero-based labels; convert labels on output and map s/t when relabeling.
+
 Use literals such as `1'000'000`. Trees require more than n−1 edges: validate
 endpoints, reject loops/duplicates/cycles, and ensure connectivity. Test cases
 must include minimum and maximum size, chains, stars, random structures,
@@ -79,6 +83,8 @@ with `"polygon": false`; Polygon's API cannot save it.
 This applies to empty validator input as well as empty checker output.
 Adapt the plain checker fixtures to the problem's real input/output grammar;
 retain whitespace, wrong-token, missing-token, extra-token, and empty-output cases.
+Keep literal fixtures small; packaged maximum-size tests already exercise the
+validator at scale. Summarize large data files instead of printing their contents.
 
 ## 4. Verify once after completing meaningful edits
 
@@ -126,6 +132,9 @@ mechanism for authorized Polygon commands. Offline checks need no escalation.
 Re-run publish after transient network failures; it reconciles partial writes
 and preserves incompatible remote changes. If it reports a conflict, explain
 the specific conflict and do not discard or overwrite the user's working copy.
+After HTTP 429, wait before retrying. During a pending upload, keep its remote
+payload unchanged; freshly verified local-only edits can resume when the stored
+desired-payload hash matches. Never edit state fingerprints to bypass a conflict.
 
 Inspect the rendered HTML or PDF: math, constraints, examples, readable sample
 tables, and tutorial. Use a visual preview when available; report explicitly if
