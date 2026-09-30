@@ -1,0 +1,14 @@
+[
+  {"name": "correct", "input": "1 2\n", "answer": "3\n", "output": "3\n", "verdict": "OK"},
+  {"name": "whitespace", "input": "1 2\n", "answer": "3\n", "output": " \n3\t\n", "verdict": "OK"},
+  {"name": "no final newline", "input": "1 2\n", "answer": "3\n", "output": "3", "verdict": "OK"},
+  {"name": "large positive", "input": "1000000000000000000 1000000000000000000\n", "answer": "2000000000000000000\n", "output": "2000000000000000000\n", "verdict": "OK"},
+  {"name": "large negative", "input": "-1000000000000000000 -1000000000000000000\n", "answer": "-2000000000000000000\n", "output": "-2000000000000000000\n", "verdict": "OK"},
+  {"name": "wrong number", "input": "1 2\n", "answer": "3\n", "output": "4\n", "verdict": "WRONG_ANSWER"},
+  {"name": "wrong sign", "input": "-1 -1\n", "answer": "-2\n", "output": "2\n", "verdict": "WRONG_ANSWER"},
+  {"name": "empty output", "input": "1 2\n", "answer": "3\n", "output": "", "verdict": "PRESENTATION_ERROR", "polygon": false},
+  {"name": "non-integer", "input": "1 2\n", "answer": "3\n", "output": "three\n", "verdict": "PRESENTATION_ERROR"},
+  {"name": "integer overflow", "input": "1 2\n", "answer": "3\n", "output": "9223372036854775808\n", "verdict": "PRESENTATION_ERROR"},
+  {"name": "extra integer", "input": "1 2\n", "answer": "3\n", "output": "3 4\n", "verdict": "PRESENTATION_ERROR"},
+  {"name": "extra text", "input": "1 2\n", "answer": "3\n", "output": "3 trailing\n", "verdict": "PRESENTATION_ERROR"}
+]

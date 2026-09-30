@@ -1,0 +1,15 @@
+.venv/
+/config.toml
+/config.toml.tmp
+*.egg-info/
+dist/
+__pycache__/
+*.py[cod]
+.env
+.env.*
+!.env.example
+.polygon/
+**/build/
+**/artifacts/
+**/polygon-state.json
+**/polygon-state.json.tmp

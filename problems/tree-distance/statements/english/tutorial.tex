@@ -1,0 +1,5 @@
+Build an adjacency list and perform breadth-first search starting at $s$. Set $d[s]=0$. Whenever an unvisited vertex $v$ is reached from a vertex $u$, set $d[v]=d[u]+1$ and add $v$ to the queue. The answer is $d[t]$.
+
+Breadth-first search processes vertices in nondecreasing distance from $s$. Thus the first time it reaches a vertex $v$, it has found a path with the fewest edges from $s$ to $v$. In a tree there is exactly one simple path between any two vertices, so this value is exactly the required distance. In particular, if $s=t$, the initial value $d[s]=0$ gives the correct answer.
+
+A tree has $n-1$ edges. Each vertex enters the queue once, and each edge is examined twice, giving $O(n)$ time and $O(n)$ memory. The answer is at most $n-1$, so a 32-bit signed integer is sufficient. An iterative traversal avoids stack overflow on a long chain.

@@ -1,0 +1,8 @@
+[
+  {"name": "correct tokens", "input": "1\n", "answer": "a b\n", "output": "a b\n", "verdict": "OK"},
+  {"name": "whitespace ignored", "input": "1\n", "answer": "a b\n", "output": " \na\t b \n", "verdict": "OK"},
+  {"name": "wrong token", "input": "1\n", "answer": "a b\n", "output": "a c\n", "verdict": "WRONG_ANSWER"},
+  {"name": "missing token", "input": "1\n", "answer": "a b\n", "output": "a\n", "verdict": "WRONG_ANSWER"},
+  {"name": "extra token", "input": "1\n", "answer": "a b\n", "output": "a b c\n", "verdict": "PRESENTATION_ERROR"},
+  {"name": "empty output", "input": "1\n", "answer": "a b\n", "output": "", "verdict": "WRONG_ANSWER", "polygon": false}
+]

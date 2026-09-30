@@ -1,0 +1,163 @@
+[
+  {
+    "name": "minimum and coincident endpoints",
+    "input": "1 1 1\n",
+    "verdict": "VALID"
+  },
+  {
+    "name": "two vertices reversed edge",
+    "input": "2 1 2\n2 1\n",
+    "verdict": "VALID"
+  },
+  {
+    "name": "coincident endpoint in larger tree",
+    "input": "3 3 3\n2 3\n1 2\n",
+    "verdict": "VALID"
+  },
+  {
+    "name": "branch and unordered edges",
+    "input": "5 5 2\n4 3\n1 3\n3 5\n2 1\n",
+    "verdict": "VALID"
+  },
+  {
+    "name": "empty input",
+    "input": "",
+    "verdict": "INVALID",
+    "polygon": false
+  },
+  {
+    "name": "n below minimum",
+    "input": "0 1 1\n",
+    "verdict": "INVALID"
+  },
+  {
+    "name": "negative n",
+    "input": "-1 1 1\n",
+    "verdict": "INVALID"
+  },
+  {
+    "name": "n above maximum",
+    "input": "200001 1 1\n",
+    "verdict": "INVALID"
+  },
+  {
+    "name": "s below minimum",
+    "input": "1 0 1\n",
+    "verdict": "INVALID"
+  },
+  {
+    "name": "s above n",
+    "input": "1 2 1\n",
+    "verdict": "INVALID"
+  },
+  {
+    "name": "t below minimum",
+    "input": "1 1 0\n",
+    "verdict": "INVALID"
+  },
+  {
+    "name": "t above n",
+    "input": "1 1 2\n",
+    "verdict": "INVALID"
+  },
+  {
+    "name": "u below minimum",
+    "input": "2 1 2\n0 2\n",
+    "verdict": "INVALID"
+  },
+  {
+    "name": "u above n",
+    "input": "2 1 2\n3 2\n",
+    "verdict": "INVALID"
+  },
+  {
+    "name": "v below minimum",
+    "input": "2 1 2\n1 0\n",
+    "verdict": "INVALID"
+  },
+  {
+    "name": "v above n",
+    "input": "2 1 2\n1 3\n",
+    "verdict": "INVALID"
+  },
+  {
+    "name": "self-loop",
+    "input": "2 1 2\n1 1\n",
+    "verdict": "INVALID"
+  },
+  {
+    "name": "duplicate reversed edge",
+    "input": "3 1 3\n1 2\n2 1\n",
+    "verdict": "INVALID"
+  },
+  {
+    "name": "cycle and isolated vertex",
+    "input": "4 1 4\n1 2\n2 3\n3 1\n",
+    "verdict": "INVALID"
+  },
+  {
+    "name": "missing edge",
+    "input": "2 1 2\n",
+    "verdict": "INVALID"
+  },
+  {
+    "name": "extra edge",
+    "input": "2 1 2\n1 2\n1 2\n",
+    "verdict": "INVALID"
+  },
+  {
+    "name": "trailing token",
+    "input": "1 1 1\n7\n",
+    "verdict": "INVALID"
+  },
+  {
+    "name": "noninteger n",
+    "input": "x 1 1\n",
+    "verdict": "INVALID"
+  },
+  {
+    "name": "noninteger endpoint",
+    "input": "2 1 2\n1 x\n",
+    "verdict": "INVALID"
+  },
+  {
+    "name": "header double space",
+    "input": "1  1 1\n",
+    "verdict": "INVALID"
+  },
+  {
+    "name": "header tab",
+    "input": "1\t1 1\n",
+    "verdict": "INVALID"
+  },
+  {
+    "name": "header leading space",
+    "input": " 1 1 1\n",
+    "verdict": "INVALID"
+  },
+  {
+    "name": "header trailing space",
+    "input": "1 1 1 \n",
+    "verdict": "INVALID"
+  },
+  {
+    "name": "edge double space",
+    "input": "2 1 2\n1  2\n",
+    "verdict": "INVALID"
+  },
+  {
+    "name": "missing header newline",
+    "input": "1 1 1",
+    "verdict": "INVALID"
+  },
+  {
+    "name": "missing edge newline",
+    "input": "2 1 2\n1 2",
+    "verdict": "INVALID"
+  },
+  {
+    "name": "unexpected blank line",
+    "input": "1 1 1\n\n",
+    "verdict": "INVALID"
+  }
+]

@@ -1,0 +1,31 @@
+gen fixed 0 0 > 4
+gen fixed -1000000000000000000 -1000000000000000000 > 5
+gen fixed -1000000000000000000 1000000000000000000 > 6
+gen fixed 1000000000000000000 -1000000000000000000 > 7
+gen fixed 1000000000000000000 0 > 8
+gen fixed 0 -1000000000000000000 > 9
+gen fixed 0 1000000000000000000 > 10
+gen fixed -1000000000000000000 0 > 11
+gen fixed -1 -1 > 12
+gen fixed 2147483647 1 > 13
+gen fixed -2147483648 -1 > 14
+gen fixed 999999999999999999 1 > 15
+gen fixed -999999999999999999 -1 > 16
+gen small 101 > 17
+gen small 102 > 18
+gen small 103 > 19
+gen small 104 > 20
+gen small 105 > 21
+gen cancel 201 > 22
+gen cancel 202 > 23
+gen fixed 1000000000000000000 1000000000000000000 > 24
+gen random 301 > 25
+gen random 302 > 26
+gen random 303 > 27
+gen random 304 > 28
+gen random 305 > 29
+gen random 306 > 30
+gen random 307 > 31
+gen random 308 > 32
+gen random 309 > 33
+gen random 310 > 34

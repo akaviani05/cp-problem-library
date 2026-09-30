@@ -1,0 +1,118 @@
+schemaVersion = 1
+draft = false
+name = "cp-library-tree-distance"
+description = "Find the number of edges on the unique path between two vertices of an unweighted tree."
+created = "2026-09-30"
+tags = ["trees", "dfs and similar", "shortest paths"]
+
+[info]
+inputFile = "stdin"
+outputFile = "stdout"
+interactive = false
+wellFormed = true
+skipDuplicatedTestsValidation = false
+timeLimit = 1000
+memoryLimit = 256
+
+[statements.english]
+encoding = "UTF-8"
+name = "Tree Distance"
+legend = "statements/english/legend.tex"
+input = "statements/english/input.tex"
+output = "statements/english/output.tex"
+notes = "statements/english/notes.tex"
+tutorial = "statements/english/tutorial.tex"
+
+[[files]]
+type = "resource"
+name = "testlib.h"
+path = "../../include/testlib.h"
+
+[[files]]
+type = "resource"
+name = "testlib_ext.h"
+path = "../../include/testlib_ext.h"
+
+[[files]]
+type = "source"
+name = "gen.cpp"
+path = "generators/gen.cpp"
+sourceType = "cpp.g++17"
+
+[[files]]
+type = "source"
+name = "validator.cpp"
+path = "validators/validator.cpp"
+sourceType = "cpp.g++17"
+
+[[files]]
+type = "source"
+name = "checker.cpp"
+path = "checkers/checker.cpp"
+sourceType = "cpp.g++17"
+
+[assets]
+validator = "validator.cpp"
+checker = "checker.cpp"
+
+[[solutions]]
+name = "main.cpp"
+path = "solutions/main.cpp"
+tag = "MA"
+sourceType = "cpp.g++17"
+
+[[solutions]]
+name = "reference.cpp"
+path = "solutions/reference.cpp"
+tag = "OK"
+sourceType = "cpp.g++17"
+
+[[solutions]]
+name = "wrong.cpp"
+path = "solutions/wrong.cpp"
+tag = "WA"
+sourceType = "cpp.g++17"
+
+[[solutions]]
+name = "wrong-labels.cpp"
+path = "solutions/wrong-labels.cpp"
+tag = "WA"
+sourceType = "cpp.g++17"
+
+[[solutions]]
+name = "wrong-vertices.cpp"
+path = "solutions/wrong-vertices.cpp"
+tag = "WA"
+sourceType = "cpp.g++17"
+
+[testsets.tests]
+script = "tests/doall.txt"
+
+[[testsets.tests.manualTests]]
+index = 1
+input = "tests/manual/01.in"
+output = "tests/manual/01.ans"
+useInStatements = true
+description = "First example"
+
+[[testsets.tests.manualTests]]
+index = 2
+input = "tests/manual/02.in"
+output = "tests/manual/02.ans"
+useInStatements = true
+description = "A path through a branch"
+
+[[testsets.tests.manualTests]]
+index = 3
+input = "tests/manual/03.in"
+output = "tests/manual/03.ans"
+useInStatements = true
+description = "Two leaves of a star"
+
+[selfTests]
+validator = "tests/validator/cases.json"
+checker = "tests/checker/cases.json"
+
+[verification]
+oracle = "solutions/oracle.py"
+stressGenerator = "tests/stress.py"

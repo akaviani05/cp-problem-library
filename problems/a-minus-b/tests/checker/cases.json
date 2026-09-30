@@ -1,0 +1,12 @@
+[
+  {"name": "correct positive", "input": "7 2\n", "answer": "5\n", "output": "5\n", "verdict": "OK"},
+  {"name": "correct negative", "input": "2 7\n", "answer": "-5\n", "output": "-5\n", "verdict": "OK"},
+  {"name": "correct zero", "input": "0 0\n", "answer": "0\n", "output": "0\n", "verdict": "OK"},
+  {"name": "whitespace ignored", "input": "2 7\n", "answer": "-5\n", "output": " \n\t-5 \n", "verdict": "OK"},
+  {"name": "wrong sign", "input": "2 7\n", "answer": "-5\n", "output": "5\n", "verdict": "WRONG_ANSWER"},
+  {"name": "wrong token", "input": "7 2\n", "answer": "5\n", "output": "6\n", "verdict": "WRONG_ANSWER"},
+  {"name": "missing token", "input": "7 2\n", "answer": "5\n", "output": " \n", "verdict": "WRONG_ANSWER"},
+  {"name": "extra token", "input": "7 2\n", "answer": "5\n", "output": "5 0\n", "verdict": "PRESENTATION_ERROR"},
+  {"name": "noncanonical numeral", "input": "7 2\n", "answer": "5\n", "output": "05\n", "verdict": "WRONG_ANSWER"},
+  {"name": "empty output", "input": "7 2\n", "answer": "5\n", "output": "", "verdict": "WRONG_ANSWER", "polygon": false}
+]

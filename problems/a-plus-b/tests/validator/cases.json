@@ -1,0 +1,20 @@
+[
+  {"name": "zero", "input": "0 0\n", "verdict": "VALID"},
+  {"name": "upper bounds", "input": "1000000000000000000 1000000000000000000\n", "verdict": "VALID"},
+  {"name": "lower bounds", "input": "-1000000000000000000 -1000000000000000000\n", "verdict": "VALID"},
+  {"name": "mixed signs", "input": "-1000000000000000000 1000000000000000000\n", "verdict": "VALID"},
+  {"name": "a too large", "input": "1000000000000000001 0\n", "verdict": "INVALID"},
+  {"name": "a too small", "input": "-1000000000000000001 0\n", "verdict": "INVALID"},
+  {"name": "b too large", "input": "0 1000000000000000001\n", "verdict": "INVALID"},
+  {"name": "b too small", "input": "0 -1000000000000000001\n", "verdict": "INVALID"},
+  {"name": "64-bit overflow", "input": "9223372036854775808 0\n", "verdict": "INVALID"},
+  {"name": "missing integer", "input": "1\n", "verdict": "INVALID"},
+  {"name": "extra token", "input": "1 2 3\n", "verdict": "INVALID"},
+  {"name": "extra line", "input": "1 2\n0\n", "verdict": "INVALID"},
+  {"name": "missing newline", "input": "1 2", "verdict": "INVALID"},
+  {"name": "double space", "input": "1  2\n", "verdict": "INVALID"},
+  {"name": "tab", "input": "1\t2\n", "verdict": "INVALID"},
+  {"name": "leading space", "input": " 1 2\n", "verdict": "INVALID"},
+  {"name": "trailing space", "input": "1 2 \n", "verdict": "INVALID"},
+  {"name": "not an integer", "input": "x 2\n", "verdict": "INVALID"}
+]

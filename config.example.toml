@@ -1,0 +1,9 @@
+# Copy to config.toml or run cppl config init. config.toml is ignored by Git.
+[polygon]
+api_key = ""
+api_secret = ""
+owner = ""
+problem_prefix = "cp-library-"
+contest_id = 0 # Optional preference; contest insertion is manual.
+poll_seconds = 10
+build_timeout_seconds = 600

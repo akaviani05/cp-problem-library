@@ -1,0 +1,2 @@
+# Add explicit commands such as: gen mode argument seed > 2
+# Manual tests and generated tests share contiguous indices starting at 1.

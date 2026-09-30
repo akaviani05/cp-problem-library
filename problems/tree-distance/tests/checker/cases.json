@@ -1,0 +1,45 @@
+[
+  {
+    "name": "correct integer",
+    "input": "6 4 6\n1 2\n1 3\n2 4\n2 5\n3 6\n",
+    "answer": "4\n",
+    "output": "4\n",
+    "verdict": "OK"
+  },
+  {
+    "name": "whitespace ignored",
+    "input": "6 4 6\n1 2\n1 3\n2 4\n2 5\n3 6\n",
+    "answer": "4\n",
+    "output": " \n4\t\n",
+    "verdict": "OK"
+  },
+  {
+    "name": "wrong integer",
+    "input": "6 4 6\n1 2\n1 3\n2 4\n2 5\n3 6\n",
+    "answer": "4\n",
+    "output": "2\n",
+    "verdict": "WRONG_ANSWER"
+  },
+  {
+    "name": "missing token",
+    "input": "6 4 6\n1 2\n1 3\n2 4\n2 5\n3 6\n",
+    "answer": "4\n",
+    "output": " \n",
+    "verdict": "WRONG_ANSWER"
+  },
+  {
+    "name": "extra token",
+    "input": "6 4 6\n1 2\n1 3\n2 4\n2 5\n3 6\n",
+    "answer": "4\n",
+    "output": "4 0\n",
+    "verdict": "PRESENTATION_ERROR"
+  },
+  {
+    "name": "empty output",
+    "input": "6 4 6\n1 2\n1 3\n2 4\n2 5\n3 6\n",
+    "answer": "4\n",
+    "output": "",
+    "verdict": "WRONG_ANSWER",
+    "polygon": false
+  }
+]
