@@ -1,0 +1,5 @@
+If the graph is bipartite, print \texttt{YES} on the first line. On the second line, print $n$ integers $c_1,c_2,\ldots,c_n$ ($c_i\in\{0,1\}$), where $c_i$ is the color of vertex $i$. For every edge $(u,v)$, the colors must differ.
+
+Otherwise, print \texttt{NO} on the first line. On the second line, print an odd integer $k$ ($3\le k\le n$). On the third line, print $k$ distinct vertex numbers $v_1,v_2,\ldots,v_k$. For every $i$ from $1$ to $k-1$, there must be an edge between $v_i$ and $v_{i+1}$, and there must also be an edge between $v_k$ and $v_1$.
+
+Any valid coloring or odd cycle is accepted. The checker validates the certificate directly.

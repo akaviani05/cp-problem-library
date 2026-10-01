@@ -1,0 +1,13 @@
+gen forest 1 0 101 > 3
+gen forest 12 11 102 > 4
+gen forest 20 7 103 > 5
+gen tree 200000 199999 chain 104 > 6
+gen tree 100000 99999 star 105 > 7
+gen tree 120000 119999 broom 106 > 8
+gen tree 200000 199999 random 107 > 9
+gen connected-cycle 3 3 108 > 10
+gen connected-cycle 200000 200000 109 > 11
+gen random 200000 200000 110 > 12
+gen random 1000 200000 111 > 13
+gen random 200000 0 112 > 14
+gen long-cycle 200000 200000 113 > 15

@@ -1,0 +1,16 @@
+[
+  {"name":"accept alternate valid coloring","input":"2 1\n1 2\n","answer":"YES\n0 1\n","output":"YES\n1 0\n","verdict":"OK"},
+  {"name":"accept a valid odd cycle","input":"4 5\n1 2\n2 3\n3 1\n3 4\n4 1\n","answer":"NO\n3\n1 2 3\n","output":"NO\n3\n1 4 3\n","verdict":"OK"},
+  {"name":"whitespace ignored","input":"2 1\n1 2\n","answer":"YES 0 1\n","output":" YES\n0\t1 \n","verdict":"OK"},
+  {"name":"reject equal colors on an edge","input":"2 1\n1 2\n","answer":"YES 0 1\n","output":"YES\n0 0\n","verdict":"WRONG_ANSWER"},
+  {"name":"reject even cycle","input":"4 4\n1 2\n2 3\n3 4\n4 1\n","answer":"NO 4 1 2 3 4\n","output":"NO\n4\n1 2 3 4\n","verdict":"WRONG_ANSWER"},
+  {"name":"reject repeated cycle vertex","input":"3 3\n1 2\n2 3\n3 1\n","answer":"NO 3 1 2 3\n","output":"NO\n3\n1 2 1\n","verdict":"WRONG_ANSWER"},
+  {"name":"reject missing cycle edge","input":"4 3\n1 2\n2 3\n3 4\n","answer":"NO 3 1 2 3\n","output":"NO\n3\n1 2 4\n","verdict":"WRONG_ANSWER"},
+  {"name":"reject minimum signed integer cycle vertex","input":"3 3\n1 2\n2 3\n3 1\n","answer":"NO 3 1 2 3\n","output":"NO\n3\n-2147483648 2 3\n","verdict":"WRONG_ANSWER"},
+  {"name":"reject odd-cycle claim on a bipartite graph","input":"4 4\n1 2\n2 3\n3 4\n4 1\n","answer":"YES 0 1 0 1\n","output":"NO\n3\n1 2 3\n","verdict":"WRONG_ANSWER"},
+  {"name":"reject invalid color","input":"1 0\n","answer":"YES 0\n","output":"YES 2\n","verdict":"WRONG_ANSWER"},
+  {"name":"reject extra token","input":"1 0\n","answer":"YES 0\n","output":"YES 0 extra\n","verdict":"PRESENTATION_ERROR"},
+  {"name":"reject missing color","input":"1 0\n","answer":"YES 0\n","output":"YES\n","verdict":"PRESENTATION_ERROR"},
+  {"name":"reject unknown answer type","input":"1 0\n","answer":"YES 0\n","output":"MAYBE\n","verdict":"WRONG_ANSWER"},
+  {"name":"empty output","input":"1 0\n","answer":"YES 0\n","output":"","verdict":"PRESENTATION_ERROR","polygon":false}
+]

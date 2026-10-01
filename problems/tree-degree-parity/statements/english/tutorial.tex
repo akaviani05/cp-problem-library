@@ -1,0 +1,13 @@
+For any selected edge, both of its endpoints gain one in their degree. Thus
+the sum of all requested parities must be even. This condition is also
+sufficient on a tree.
+
+Root the tree at vertex $1$. Start with $need[v]=s_v$. Process the vertices in
+reverse traversal order, excluding the root. If $need[v]=1$, select the edge
+from $v$ to its parent and toggle $need$ at the parent. After processing all
+non-root vertices, the root's value is zero exactly when the total parity is
+even. If it is zero, the selected edges give every vertex its requested
+degree parity.
+
+The algorithm takes $O(n)$ time and $O(n)$ memory. The condition that the
+number of $1$s is even can also be checked before constructing the subset.

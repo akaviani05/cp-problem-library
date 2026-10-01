@@ -1,0 +1,7 @@
+[
+  {"name":"correct answer","input":"3 1\n1 2\n","answer":"2\n","output":"2\n","verdict":"OK"},
+  {"name":"whitespace ignored","input":"3 1\n1 2\n","answer":"2\n","output":" \n2\t\n","verdict":"OK"},
+  {"name":"wrong count","input":"3 1\n1 2\n","answer":"2\n","output":"1\n","verdict":"WRONG_ANSWER"},
+  {"name":"missing answer","input":"3 1\n1 2\n","answer":"2\n","output":"","verdict":"WRONG_ANSWER","polygon":false},
+  {"name":"extra token","input":"3 1\n1 2\n","answer":"2\n","output":"2 3\n","verdict":"PRESENTATION_ERROR"}
+]

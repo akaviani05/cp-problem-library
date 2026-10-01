@@ -71,7 +71,9 @@ separate execution contracts before support is added.
 - `verification`: local Python `oracle` and `stressGenerator` paths.
 
 Test recipe lines are `gen literal-arguments seed > numeric-index`; manual tests
-occupy their declared indices. No shell execution, loops, `$` destinations, or
+occupy their declared indices. Blank lines and full-line `#` comments are allowed
+locally and omitted from the Polygon script; commands are uploaded in test-index
+order to match Polygon's readback. No shell execution, loops, `$` destinations, or
 automatic numbering. Validator fixtures use VALID/INVALID; checker fixtures use
 OK/WRONG_ANSWER/PRESENTATION_ERROR with input, answer, output. Empty API fields
 must be marked `"polygon": false` and remain checked locally.
@@ -81,6 +83,11 @@ alternative answers require a different checker. `MA`/`OK` must always accept;
 WA/PE/RE/TL/ML require a matching failure witness and may accept other tests;
 RJ allows any rejection, TO may pass or time out, TM may pass or hit time/memory,
 NR compiles but is not judged. See the verifier for any new tag behavior.
+
+Statement uploads match Polygon's punctuation normalization: curly double quotes
+become straight quotes, and an em dash becomes TeX `---`. Local source fragments
+are preserved. Readback and conflict errors identify differing asset paths
+without logging their contents.
 
 ## Evidence and recovery
 

@@ -1,0 +1,11 @@
+# Manual sample is index 1.
+gen path 200000 199999 1001 > 2
+gen star 200000 199999 1002 > 3
+gen connected-bipartite 200000 200000 100000 1003 > 4
+gen bipartite 9 18 4 1004 > 5
+gen odd-cycle 200000 200000 1005 > 6
+gen random 200000 200000 1006 > 7
+gen random 1 0 1007 > 8
+gen odd-cycle 3 3 1008 > 9
+gen disconnected-odd 4 3 1009 > 10
+gen long-odd-cycle 199999 199999 1010 > 11

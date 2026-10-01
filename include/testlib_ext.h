@@ -38,6 +38,16 @@ inline long long edge_count(int n) {
     return 1LL * n * (n - 1) / 2;
 }
 
+inline long long bipartite_edge_count(int n, int left_size) {
+    ensuref(n >= 0 && 0 <= left_size && left_size <= n, "partition size must be in [0, n]");
+    return 1LL * left_size * (n - left_size);
+}
+
+inline Edge bipartite_edge_from_id(int n, int left_size, long long id) {
+    const int right_size = n - left_size;
+    return {static_cast<int>(id / right_size), left_size + static_cast<int>(id % right_size)};
+}
+
 inline long long row_start(int n, int u) {
     return 1LL * u * (2LL * n - u - 1) / 2;
 }
@@ -252,6 +262,60 @@ inline EdgeList connected_graph(int n, long long m, const std::string& tree_mode
     }
     shuffle_edges(edges);
     return edges;
+}
+
+// Fixed partition: [0, left_size) and [left_size, n). Connectivity is not forced.
+inline EdgeList random_bipartite_graph(int n, int left_size, long long m) {
+    const long long total = detail::bipartite_edge_count(n, left_size);
+    ensuref(0 <= m && m <= total, "bipartite graph needs 0 <= m <= left_size*(n-left_size)");
+    ensuref(static_cast<unsigned long long>(m) <= EdgeList().max_size(), "edge count cannot fit in a vector");
+    EdgeList edges;
+    edges.reserve(static_cast<std::size_t>(m));
+    for (long long id : detail::sample_indices(total, m))
+        edges.push_back(detail::bipartite_edge_from_id(n, left_size, id));
+    shuffle_edges(edges);
+    return edges;
+}
+
+// Grow a spanning tree across the partition, then sample distinct non-tree edges.
+inline EdgeList connected_bipartite_graph(int n, int left_size, long long m) {
+    const long long total = detail::bipartite_edge_count(n, left_size);
+    ensuref(n >= 1 && n - 1 <= m && m <= total,
+            "connected bipartite graph needs n >= 1 and n-1 <= m <= left_size*(n-left_size)");
+    ensuref(static_cast<unsigned long long>(m) <= EdgeList().max_size(), "edge count cannot fit in a vector");
+    if (n == 1) return {};
+    EdgeList edges;
+    edges.reserve(static_cast<std::size_t>(m));
+    std::vector<int> left{rnd.next(0, left_size - 1)}, right{rnd.next(left_size, n - 1)};
+    left.reserve(left_size);
+    right.reserve(n - left_size);
+    edges.emplace_back(left[0], right[0]);
+    for (int v : random_permutation(n)) {
+        if (v == left[0] || v == right[0]) continue;
+        if (v < left_size) {
+            edges.emplace_back(v, right[rnd.next(0, static_cast<int>(right.size()) - 1)]);
+            left.push_back(v);
+        } else {
+            edges.emplace_back(left[rnd.next(0, static_cast<int>(left.size()) - 1)], v);
+            right.push_back(v);
+        }
+    }
+    std::vector<long long> holes;
+    holes.reserve(n - 1);
+    for (const auto& edge : edges)
+        holes.push_back(1LL * edge.first * (n - left_size) + edge.second - left_size);
+    std::sort(holes.begin(), holes.end());
+    for (std::size_t i = 0; i < holes.size(); ++i) holes[i] -= static_cast<long long>(i);
+    for (long long rank : detail::sample_indices(total - n + 1, m - n + 1)) {
+        const long long id = rank + (std::upper_bound(holes.begin(), holes.end(), rank) - holes.begin());
+        edges.push_back(detail::bipartite_edge_from_id(n, left_size, id));
+    }
+    shuffle_edges(edges);
+    return edges;
+}
+
+inline EdgeList generate_bipartite_graph(int n, int left_size, long long m, bool connected = false) {
+    return connected ? connected_bipartite_graph(n, left_size, m) : random_bipartite_graph(n, left_size, m);
 }
 
 inline void require_output_eof() {

@@ -1,0 +1,7 @@
+gen chain 2 101 > 2
+gen chain 200000 102 > 3
+gen star 100000 103 > 4
+gen broom 50000 104 > 5
+gen random 50000 105 > 6
+gen chain-random 50000 106 > 7
+gen complete-binary 50000 107 > 8

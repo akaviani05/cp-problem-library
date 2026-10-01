@@ -1,0 +1,5 @@
+Run a graph traversal from every not-yet-visited vertex. Give the start vertex color $0$, and whenever an uncolored neighbor is found, give it the opposite color. If an edge has endpoints with the same color, the graph is not bipartite.
+
+During the traversal, record each vertex's parent in the traversal tree and its depth. For an edge whose endpoints have the same color, their depths have the same parity. Follow their parent links until they meet at a common ancestor. The tree path between the endpoints has even length; adding the detected edge closes a simple odd cycle. Output its vertices in order.
+
+If the traversal finishes without finding such an edge, every edge joins opposite colors, so the recorded coloring is valid. Every vertex and edge is examined a constant number of times. The running time is $O(n+m)$ and the memory usage is $O(n+m)$.

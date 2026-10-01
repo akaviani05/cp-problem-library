@@ -1,0 +1,8 @@
+gen random 1 0 101 > 2
+gen random 200000 0 102 > 3
+gen chain 200000 199999 103 > 4
+gen shuffled-chain 100000 99999 104 > 5
+gen star 200000 199999 105 > 6
+gen random 200000 200000 106 > 7
+gen disconnected 200000 200000 107 > 8
+gen complete 100 4950 108 > 9

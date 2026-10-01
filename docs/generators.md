@@ -26,6 +26,9 @@ A `cp::EdgeList` is a vector of `pair<int,int>`; edge orientation is arbitrary.
 | `shuffle_labels_and_edges(n, edges, shuffle_orientation=true)` | Relabel/shuffle in place; return old-label → new-label mapping |
 | `connected_graph(n, m, tree_mode="random", chain_length=-1)` | Tree backbone plus m−n+1 distinct non-tree edges |
 | `random_graph(n, m)` | Uniform subset of m distinct edges; connectivity is not forced |
+| `random_bipartite_graph(n, left_size, m)` | Uniform subset of m distinct edges across a fixed partition; connectivity is not forced |
+| `connected_bipartite_graph(n, left_size, m)` | Random bipartite spanning tree plus m−n+1 distinct non-tree edges |
+| `generate_bipartite_graph(n, left_size, m, connected=false)` | Dispatch to either bipartite generator |
 
 Every function is in namespace `cp`. Modes are `chain`, `star`, `broom`, `random`,
 `chain-random`, `full-binary`, and `complete-binary`. `binary` means complete;
@@ -51,6 +54,31 @@ space; connected graphs take O(n log n + m log n) time and O(n+m) space. Most tr
 shapes take O(n); the uniform Prüfer generator takes O(n log n). Connected graphs
 follow the requested tree-plus-edges construction, not a uniform distribution
 over connected graphs.
+
+Bipartite generators partition vertices into `[0, left_size)` and
+`[left_size, n)`, with `0 ≤ left_size ≤ n` and
+`0 ≤ m ≤ left_size*(n-left_size)`. They preserve these labels while shuffling
+edge order and orientation. The unrestricted generator may produce a connected
+graph; it does not force disconnection. Empty partitions are allowed when m=0.
+The connected generator requires n≥1 and m≥n−1; for n>1 both partitions must be
+nonempty. A one-vertex graph with no edges is connected for either partition size.
+
+The connected variant grows a tree by attaching each new vertex to a random
+already introduced vertex on the opposite side, then samples additional distinct
+cross-partition edges. Its tree and final graph are not uniformly distributed.
+Both variants avoid duplicate-draw slowdowns even at complete bipartite density.
+Unrestricted generation takes O(m) expected time and O(m) space; connected
+generation takes O(n log n + m log n) time and O(n+m) space. All randomness uses
+the same testlib seed. For example:
+
+```cpp
+auto edges = cp::generate_bipartite_graph(100, 40, 200, true);
+// Vertices 0..39 are on the left; 40..99 are on the right.
+for (auto [u, v] : edges) println(u + 1, v + 1);
+```
+
+If you subsequently call `shuffle_labels_and_edges`, map the partition through
+its returned permutation as well as any query vertices.
 
 ```cpp
 #include "testlib_ext.h"

@@ -1,0 +1,17 @@
+[
+  {"name":"minimum isolated vertex","input":"1 0\n","verdict":"VALID"},
+  {"name":"maximum n and zero edges","input":"200000 0\n","verdict":"VALID"},
+  {"name":"too many edges for n","input":"3 4\n","verdict":"INVALID"},
+  {"name":"small simple edge","input":"2 1\n1 2\n","verdict":"VALID"},
+  {"name":"self loop","input":"2 1\n1 1\n","verdict":"INVALID"},
+  {"name":"duplicate edge reversed","input":"3 2\n1 2\n2 1\n","verdict":"INVALID"},
+  {"name":"self loop in one-vertex graph","input":"1 1\n1 1\n","verdict":"INVALID"},
+  {"name":"n below lower bound","input":"0 0\n","verdict":"INVALID"},
+  {"name":"n above upper bound","input":"200001 0\n","verdict":"INVALID"},
+  {"name":"m above upper bound","input":"2 200001\n","verdict":"INVALID"},
+  {"name":"endpoint outside range","input":"2 1\n1 3\n","verdict":"INVALID"},
+  {"name":"missing edge line","input":"2 1\n","verdict":"INVALID"},
+  {"name":"extra token","input":"1 0\n7\n","verdict":"INVALID"},
+  {"name":"bad spacing","input":"2  0\n","verdict":"INVALID"},
+  {"name":"empty input","input":"","verdict":"INVALID","polygon":false}
+]

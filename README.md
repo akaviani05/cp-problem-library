@@ -105,5 +105,11 @@ This table is maintained from problem metadata by `cppl catalog`.
 | --- | --- | --- | --- |
 | [A Minus B](problems/a-minus-b/problem.toml) · [Polygon](https://polygon.codeforces.com/problem?problemId=592590) | Compute the difference of two signed integers. | implementation, math | 2026-09-30 |
 | [A + B](problems/a-plus-b/problem.toml) · [Polygon](https://polygon.codeforces.com/problem?problemId=592542) | Add two signed integers, with 64-bit boundary tests. | implementation, math | 2026-09-30 |
+| [Bipartite Checking](problems/bipartite-checking/problem.toml) · [Polygon](https://polygon.codeforces.com/problem?problemId=592722) | Color a graph bipartitely or exhibit an odd cycle. | graphs, bipartite, cycle | 2026-09-30 |
+| [Connected Components](problems/connected-components/problem.toml) · [Polygon](https://polygon.codeforces.com/problem?problemId=592714) | Count the connected components of an undirected graph. | graphs, connected-components | 2026-09-30 |
+| [Cycle Detection](problems/cycle-detection/problem.toml) · [Polygon](https://polygon.codeforces.com/problem?problemId=592721) | Detect whether an undirected graph is a forest or return a simple cycle. | graphs, dfs, cycles | 2026-09-30 |
+| [Tree Degree Parity](problems/tree-degree-parity/problem.toml) · [Polygon](https://polygon.codeforces.com/problem?problemId=592717) | Select tree edges so each vertex has a prescribed degree parity. | trees, graphs, constructive algorithms | 2026-09-30 |
+| [Tree DFS Order](problems/tree-dfs-order/problem.toml) · [Polygon](https://polygon.codeforces.com/problem?problemId=592709) | Print the order in which a depth-first search first visits the vertices of a rooted tree. | graphs, trees, dfs | 2026-09-30 |
 | [Tree Distance](problems/tree-distance/problem.toml) · [Polygon](https://polygon.codeforces.com/problem?problemId=592594) | Find the number of edges on the unique path between two vertices of an unweighted tree. | trees, dfs and similar, shortest paths | 2026-09-30 |
+| [Tree Piece Game](problems/tree-piece-game/problem.toml) · [Polygon](https://polygon.codeforces.com/problem?problemId=592724) | Determine the winner of an alternating piece-moving game on a tree. | graphs, trees, games | 2026-09-30 |
 <!-- cppl:problems:end -->

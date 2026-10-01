@@ -1,0 +1,12 @@
+[
+  {"name":"valid subset listed in reverse order","input":"4\n1001\n1 2\n2 3\n3 4\n","answer":"YES\n3\n1 2 3\n","output":"YES\n3\n3 2 1\n","verdict":"OK"},
+  {"name":"valid empty subset","input":"2\n00\n1 2\n","answer":"YES\n0\n","output":"YES\n0\n","verdict":"OK"},
+  {"name":"impossible parity vector","input":"2\n10\n1 2\n","answer":"NO\n","output":"NO\n","verdict":"OK"},
+  {"name":"claims impossible for feasible vector","input":"1\n0\n","answer":"YES\n0\n","output":"NO\n","verdict":"WRONG_ANSWER"},
+  {"name":"incorrect vertex parities","input":"2\n11\n1 2\n","answer":"YES\n1\n1\n","output":"YES\n0\n","verdict":"WRONG_ANSWER"},
+  {"name":"duplicate edge index","input":"2\n11\n1 2\n","answer":"YES\n1\n1\n","output":"YES\n2\n1 1\n","verdict":"WRONG_ANSWER"},
+  {"name":"edge index out of range","input":"2\n11\n1 2\n","answer":"YES\n1\n1\n","output":"YES\n1\n2\n","verdict":"WRONG_ANSWER"},
+  {"name":"wrong verdict on impossible vector","input":"2\n10\n1 2\n","answer":"NO\n","output":"YES\n0\n","verdict":"WRONG_ANSWER"},
+  {"name":"extra output token","input":"1\n0\n","answer":"YES\n0\n","output":"YES\n0\nextra\n","verdict":"PRESENTATION_ERROR"},
+  {"name":"empty output","input":"1\n0\n","answer":"YES\n0\n","output":"","verdict":"PRESENTATION_ERROR","polygon":false}
+]

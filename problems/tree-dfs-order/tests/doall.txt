@@ -1,0 +1,13 @@
+# index 1 is the manual sample. Arguments: shape n root seed permute
+gen chain 2 1 101 0 > 3
+gen chain 1 1 100 0 > 2
+gen star 7 4 102 0 > 4
+gen broom 31 31 103 1 > 5
+gen random 97 53 104 1 > 6
+gen chain-random 1000 1 105 1 > 7
+gen complete-binary 65535 65535 106 0 > 8
+gen chain 200000 200000 107 0 > 9
+gen star 200000 1 108 0 > 10
+gen broom 200000 100001 109 1 > 11
+gen random 200000 1 110 1 > 12
+gen chain-random 200000 173829 111 1 > 13

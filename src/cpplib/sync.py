@@ -83,10 +83,28 @@ def put_path(value, path, item):
 
 def compatible(current, before, desired):
     """Each observed leaf must equal either the recorded baseline or our intended write."""
+    return not conflicting_paths(current, before, desired)
+
+
+def differing_paths(current, desired, prefix=""):
+    if isinstance(current, dict) and isinstance(desired, dict):
+        return [path for key in sorted(current.keys() | desired.keys())
+                for path in differing_paths(current.get(key), desired.get(key),
+                                            f"{prefix}/{key}" if prefix else key)]
+    return [] if current == desired else [prefix]
+
+
+def conflicting_paths(current, before, desired, prefix=""):
     if all(isinstance(item, dict) for item in (current, before, desired)):
-        return all(compatible(current.get(key), before.get(key), desired.get(key))
-                   for key in current.keys() | before.keys() | desired.keys())
-    return current == before or current == desired
+        return [path for key in sorted(current.keys() | before.keys() | desired.keys())
+                for path in conflicting_paths(current.get(key), before.get(key), desired.get(key),
+                                              f"{prefix}/{key}" if prefix else key)]
+    return [] if current == before or current == desired else [prefix]
+
+
+def statement_text(value):
+    """Match Polygon's observed normalization of typographic punctuation."""
+    return normalize(value).replace("\u2014", "---").replace("\u201c", '"').replace("\u201d", '"')
 
 
 def operations(problem, baseline):
@@ -101,7 +119,8 @@ def operations(problem, baseline):
     add("problem.updateInfo", ["info"], {**baseline["info"], **c["info"]}, **c["info"])
     add("problem.saveTags", ["tags"], sorted(c["tags"]), tags=",".join(c["tags"]))
     for language, statement in c["statements"].items():
-        params = {key: problem.text(value) if key in TEXT_FIELDS else value for key, value in statement.items()}
+        params = {key: statement_text(problem.text(value)) if key in TEXT_FIELDS else value
+                  for key, value in statement.items()}
         value = {key: normalize(params.get(key, "")) for key in TEXT_FIELDS | {"name", "encoding"}}
         add("problem.saveStatement", ["statements", language], value, lang=language, **params)
     for file in c["files"]:
@@ -126,7 +145,12 @@ def operations(problem, baseline):
         add("problem.saveTest", ["manualTests", str(manual["index"])], value, testset="tests", testIndex=manual["index"],
             testInput=data, testDescription=value["description"], testUseInStatements=value["sample"],
             testInputForStatements="", testOutputForStatements="", verifyInputOutputForStatements=True)
-    script = problem.text(c["testsets"]["tests"]["script"])
+    # Polygon accepts commands only; local recipes also allow comments and blanks.
+    lines = [line for line in problem.text(c["testsets"]["tests"]["script"]).splitlines()
+             if line.strip() and not line.lstrip().startswith("#")]
+    # Polygon stores generation commands in test-index order.
+    lines.sort(key=lambda line: int(line.split()[-1]))
+    script = "\n".join(lines) + ("\n" if lines else "")
     add("problem.saveScript", ["script"], normalize(script).strip(), testset="tests", source=script)
     for role in ("validator", "checker"):
         cases = problem.fixtures(role, remote=True)
@@ -196,7 +220,9 @@ def upload(problem, api, config):
         require(state.get("intentFingerprint") == report["fingerprint"]
                 or state.get("uploadDesiredFingerprint") == digest(desired),
                 "Finish the pending upload before changing its remote payload.")
-        require(compatible(current, baseline, desired), "Remote changes conflict with the pending upload; inspect them before proceeding.")
+        conflicts = conflicting_paths(current, baseline, desired)
+        require(not conflicts, "Remote changes conflict with the pending upload at "
+                + ", ".join(conflicts[:10]) + "; inspect them before proceeding.")
     else:
         require(not remote["modified"], "Remote working copy contains user changes; commit or reconcile them before upload.")
         if state.get("remoteBaseline"):
@@ -215,7 +241,9 @@ def upload(problem, api, config):
         count += 1
         print(f"Uploaded {'/'.join(path)}.", flush=True)
     observed = snapshot(api, state)
-    require(observed == desired, "Remote readback differs; upload remains resumable, inspect the mismatch.")
+    mismatches = differing_paths(observed, desired)
+    require(not mismatches, "Remote readback differs at " + ", ".join(mismatches[:10])
+            + "; upload remains resumable, inspect the mismatch.")
     result = api.problem(state, "problem.commitChanges", minorChanges=True, message=f"cppl: verified {problem.slug}")
     require(not result or not result.get("conflictOccurred"), "Commit reported a conflict.")
     remote = identity(api, state)

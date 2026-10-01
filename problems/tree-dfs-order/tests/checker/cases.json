@@ -1,0 +1,52 @@
+[
+  {
+    "name": "correct order",
+    "input": "3 1\n1 2\n1 3\n",
+    "answer": "1 2 3\n",
+    "output": "1 2 3\n",
+    "verdict": "OK"
+  },
+  {
+    "name": "whitespace ignored",
+    "input": "3 1\n1 2\n1 3\n",
+    "answer": "1 2 3\n",
+    "output": " 1\t2\n3 ",
+    "verdict": "OK"
+  },
+  {
+    "name": "wrong order",
+    "input": "3 1\n1 2\n1 3\n",
+    "answer": "1 2 3\n",
+    "output": "1 3 2\n",
+    "verdict": "WRONG_ANSWER"
+  },
+  {
+    "name": "wrong token",
+    "input": "1 1\n",
+    "answer": "1\n",
+    "output": "2\n",
+    "verdict": "WRONG_ANSWER"
+  },
+  {
+    "name": "missing token",
+    "input": "2 1\n1 2\n",
+    "answer": "1 2\n",
+    "output": "1\n",
+    "verdict": "WRONG_ANSWER"
+  },
+  {
+    "name": "extra token",
+    "input": "1 1\n",
+    "answer": "1\n",
+    "output": "1 1\n",
+    "verdict": "PRESENTATION_ERROR"
+  },
+  {
+    "name": "empty output",
+    "input": "1 1\n",
+    "answer": "1\n",
+    "output": "",
+    "verdict": "WRONG_ANSWER",
+    "polygon": false
+  }
+]

@@ -1,0 +1,16 @@
+[
+  {"name":"empty graph forest","input":"1 0\n","answer":"FOREST\n","output":"FOREST\n","verdict":"OK"},
+  {"name":"valid witness accepted","input":"3 3\n1 2\n2 3\n3 1\n","answer":"CYCLE 3 1 2 3\n","output":"CYCLE 3 1 2 3\n","verdict":"OK"},
+  {"name":"alternate cycle accepted","input":"4 5\n1 2\n2 3\n3 4\n4 1\n1 3\n","answer":"CYCLE 3 1 2 3\n","output":"CYCLE 3 1 4 3\n","verdict":"OK"},
+  {"name":"cycle in disconnected component","input":"6 4\n1 2\n3 4\n4 5\n5 3\n","answer":"CYCLE 3 3 4 5\n","output":"CYCLE 3 3 5 4\n","verdict":"OK"},
+  {"name":"reject false forest","input":"3 3\n1 2\n2 3\n3 1\n","answer":"CYCLE 3 1 2 3\n","output":"FOREST\n","verdict":"WRONG_ANSWER"},
+  {"name":"reject invented cycle in forest","input":"4 2\n1 2\n3 4\n","answer":"FOREST\n","output":"CYCLE 3 1 2 3\n","verdict":"WRONG_ANSWER"},
+  {"name":"reject non-edge","input":"4 3\n1 2\n2 3\n3 1\n","answer":"CYCLE 3 1 2 3\n","output":"CYCLE 3 1 2 4\n","verdict":"WRONG_ANSWER"},
+  {"name":"reject repeated vertex","input":"3 3\n1 2\n2 3\n3 1\n","answer":"CYCLE 3 1 2 3\n","output":"CYCLE 4 1 2 3 2\n","verdict":"WRONG_ANSWER"},
+  {"name":"reject too short cycle","input":"3 3\n1 2\n2 3\n3 1\n","answer":"CYCLE 3 1 2 3\n","output":"CYCLE 2 1 2\n","verdict":"WRONG_ANSWER"},
+  {"name":"reject cycle longer than graph","input":"3 3\n1 2\n2 3\n3 1\n","answer":"CYCLE 3 1 2 3\n","output":"CYCLE 4 1 2 3 1\n","verdict":"WRONG_ANSWER"},
+  {"name":"reject missing cycle vertex","input":"3 3\n1 2\n2 3\n3 1\n","answer":"CYCLE 3 1 2 3\n","output":"CYCLE 3 1 2\n","verdict":"WRONG_ANSWER"},
+  {"name":"reject unknown result","input":"1 0\n","answer":"FOREST\n","output":"TREE\n","verdict":"WRONG_ANSWER"},
+  {"name":"reject extra token","input":"1 0\n","answer":"FOREST\n","output":"FOREST extra\n","verdict":"PRESENTATION_ERROR"},
+  {"name":"empty output","input":"1 0\n","answer":"FOREST\n","output":"","verdict":"WRONG_ANSWER","polygon":false}
+]

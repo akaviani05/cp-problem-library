@@ -1,0 +1,7 @@
+[
+  {"name": "correct answer", "input": "5 1 5\n1 2\n2 3\n3 4\n4 5\n", "answer": "Alice\n", "output": "Alice\n", "verdict": "OK"},
+  {"name": "whitespace ignored", "input": "5 1 5\n1 2\n2 3\n3 4\n4 5\n", "answer": "Alice\n", "output": "  Alice\n", "verdict": "OK"},
+  {"name": "wrong winner", "input": "5 1 5\n1 2\n2 3\n3 4\n4 5\n", "answer": "Alice\n", "output": "Bob\n", "verdict": "WRONG_ANSWER"},
+  {"name": "missing token", "input": "5 1 5\n1 2\n2 3\n3 4\n4 5\n", "answer": "Alice\n", "output": "", "verdict": "WRONG_ANSWER", "polygon": false},
+  {"name": "extra token", "input": "5 1 5\n1 2\n2 3\n3 4\n4 5\n", "answer": "Alice\n", "output": "Alice maybe\n", "verdict": "PRESENTATION_ERROR"}
+]

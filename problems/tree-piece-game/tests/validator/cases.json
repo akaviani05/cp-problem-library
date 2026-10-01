@@ -1,0 +1,13 @@
+[
+  {"name":"minimum tree, valid","input":"2 1 2\n1 2\n","verdict":"VALID"},
+  {"name":"valid path and distinct starts","input":"4 1 3\n1 2\n2 3\n3 4\n","verdict":"VALID"},
+  {"name":"n below minimum","input":"1 1 1\n","verdict":"INVALID"},
+  {"name":"n above maximum","input":"200001 1 2\n","verdict":"INVALID"},
+  {"name":"equal starting vertices","input":"2 1 1\n1 2\n","verdict":"INVALID"},
+  {"name":"endpoint above range","input":"2 1 3\n1 2\n","verdict":"INVALID"},
+  {"name":"loop","input":"2 1 2\n1 1\n","verdict":"INVALID"},
+  {"name":"cycle and disconnected vertex","input":"4 1 4\n1 2\n2 3\n3 1\n","verdict":"INVALID"},
+  {"name":"too few edges","input":"3 1 3\n1 2\n","verdict":"INVALID"},
+  {"name":"extra input","input":"2 1 2\n1 2\n7\n","verdict":"INVALID"},
+  {"name":"empty input","input":"","verdict":"INVALID","polygon":false}
+]

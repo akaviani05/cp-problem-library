@@ -34,6 +34,10 @@ class GeneratorHelpers(unittest.TestCase):
         run = execute([self.binary, "shuffle", "123"], timeout=10)
         self.assertEqual(run.returncode, 0, run.stderr.decode())
 
+    def test_bipartite_partition_connectivity_and_dense_graphs(self):
+        run = execute([self.binary, "bipartite", "123"], timeout=30, memory_mib=512)
+        self.assertEqual(run.returncode, 0, run.stderr.decode())
+
     def test_seed_reproducibility_and_variation(self):
         def sample(seed):
             run = execute([self.binary, "sample", seed])
@@ -45,7 +49,10 @@ class GeneratorHelpers(unittest.TestCase):
     def test_invalid_requests_fail_promptly(self):
         for mode in ("invalid-full-binary", "invalid-tree-size", "invalid-chain-size", "invalid-mode",
                      "invalid-parent-cycle", "invalid-parent-roots", "invalid-parent-index", "invalid-graph",
-                     "invalid-negative-graph", "invalid-connected", "invalid-empty-connected", "invalid-shuffle"):
+                     "invalid-negative-graph", "invalid-connected", "invalid-empty-connected", "invalid-shuffle",
+                     "invalid-bipartite-partition", "invalid-bipartite-negative-partition",
+                     "invalid-bipartite-negative-size", "invalid-bipartite-edges", "invalid-bipartite-negative-edges",
+                     "invalid-bipartite-connected", "invalid-bipartite-empty-side", "invalid-bipartite-empty-connected"):
             with self.subTest(mode=mode):
                 run = execute([self.binary, mode], timeout=2)
                 self.assertNotEqual(run.returncode, 0)

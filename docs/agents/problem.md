@@ -47,6 +47,11 @@ Do not dump all files back into the chat. Keep summaries compact. Keep edits to
 the target problem and README table; report CLI/harness defects to the parent
 or user instead of silently entering project mode.
 
+Blank lines and full-line `#` comments in `tests/doall.txt` are allowed locally;
+the CLI omits them from the uploaded Polygon script and sorts commands by test index.
+It also normalizes curly double quotes and em dashes in uploaded statement text
+to match Polygon's readback, while preserving the local source fragments.
+
 ## 3. Generator and validator API you need
 
 ```cpp

@@ -1,0 +1,5 @@
+Sort every adjacency list by vertex number. To simulate recursive DFS without using the call stack, put $r$ on a stack and mark it visited. Repeatedly remove the top vertex, append it to the answer, then push its unvisited neighbors in decreasing order, marking each as it is pushed. The stack visits the smallest neighbor first, just as the recursive search would.
+
+Each vertex is pushed once and each edge is examined a constant number of times. Sorting adjacency lists takes $O(n \log n)$ time in total; the traversal takes $O(n)$. The memory usage is $O(n)$.
+
+Marking a vertex when it is pushed prevents another pending vertex from adding it to the stack. Since the input is a tree, each newly discovered vertex has exactly one path from $r$. Pushing neighbors in reverse sorted order makes the smallest one the next vertex removed, and the same argument applies recursively to its subtree. Thus the produced order matches the specified DFS order.

@@ -1,0 +1,19 @@
+[
+  {"name":"minimum graph","input":"1 0\n","verdict":"VALID"},
+  {"name":"triangle","input":"3 3\n1 2\n2 3\n3 1\n","verdict":"VALID"},
+  {"name":"maximum vertex bound","input":"200000 0\n","verdict":"VALID"},
+  {"name":"n below bound","input":"0 0\n","verdict":"INVALID"},
+  {"name":"n above bound","input":"200001 0\n","verdict":"INVALID"},
+  {"name":"negative edge count","input":"2 -1\n","verdict":"INVALID"},
+  {"name":"m above bound","input":"200000 200001\n","verdict":"INVALID"},
+  {"name":"endpoint below bound","input":"2 1\n0 1\n","verdict":"INVALID"},
+  {"name":"endpoint above bound","input":"2 1\n1 3\n","verdict":"INVALID"},
+  {"name":"self-loop","input":"2 1\n2 2\n","verdict":"INVALID"},
+  {"name":"duplicate edge same orientation","input":"3 2\n1 2\n1 2\n","verdict":"INVALID"},
+  {"name":"duplicate edge reversed","input":"3 2\n1 2\n2 1\n","verdict":"INVALID"},
+  {"name":"missing edge line","input":"2 1\n","verdict":"INVALID"},
+  {"name":"missing edge endpoint","input":"2 1\n1\n","verdict":"INVALID"},
+  {"name":"extra spaces are rejected","input":"2 1\n1  2\n","verdict":"INVALID"},
+  {"name":"trailing token","input":"1 0\nextra\n","verdict":"INVALID"},
+  {"name":"empty input","input":"","verdict":"INVALID","polygon":false}
+]

@@ -84,6 +84,30 @@ int main(int argc, char** argv) {
         assert(huge.size() == 12 && normalized(huge).size() == 12);
         for (auto e : huge)
             assert(0 <= e.first && e.first < huge_n && 0 <= e.second && e.second < huge_n && e.first != e.second);
+    } else if (mode == "bipartite") {
+        auto check = [](int n, int left_size, long long m, bool connected) {
+            const auto edges = cp::generate_bipartite_graph(n, left_size, m, connected);
+            graph_check(n, edges, m, connected);
+            for (auto e : edges) assert((e.first < left_size) != (e.second < left_size));
+        };
+        for (int n = 0; n <= 12; ++n)
+            for (int left_size = 0; left_size <= n; ++left_size)
+                for (long long m = 0; m <= 1LL * left_size * (n - left_size); ++m) {
+                    check(n, left_size, m, false);
+                    if (n >= 1 && m >= n - 1) check(n, left_size, m, true);
+                }
+        check(200000, 100000, 400000, false);
+        check(200000, 100000, 400000, true);
+        check(1000, 500, 249999, false);
+        check(1000, 500, 250000, true);
+        check(200000, 1, 199999, true);
+        const int huge_n = std::numeric_limits<int>::max(), left_size = huge_n / 2;
+        const auto huge = cp::random_bipartite_graph(huge_n, left_size, 12);
+        assert(huge.size() == 12 && normalized(huge).size() == 12);
+        for (auto e : huge) {
+            assert(0 <= e.first && e.first < huge_n && 0 <= e.second && e.second < huge_n);
+            assert((e.first < left_size) != (e.second < left_size));
+        }
     } else if (mode == "shuffle") {
         assert(cp::random_permutation(0).empty());
         for (int n = 1; n <= 150; ++n) {
@@ -103,6 +127,8 @@ int main(int argc, char** argv) {
         auto edges = cp::connected_graph(30, 85);
         cp::shuffle_labels_and_edges(30, edges);
         for (auto e : edges) println(e.first, e.second);
+        for (auto e : cp::random_bipartite_graph(30, 12, 85)) println(e.first, e.second);
+        for (auto e : cp::connected_bipartite_graph(30, 12, 85)) println(e.first, e.second);
     } else if (mode == "invalid-full-binary") cp::full_binary_tree(4);
     else if (mode == "invalid-tree-size") cp::chain_tree(0);
     else if (mode == "invalid-chain-size") cp::broom_tree(4, 5);
@@ -115,6 +141,14 @@ int main(int argc, char** argv) {
     else if (mode == "invalid-connected") cp::connected_graph(4, 2);
     else if (mode == "invalid-empty-connected") cp::connected_graph(0, 0);
     else if (mode == "invalid-shuffle") { EdgeList edges{{0, 2}}; cp::shuffle_labels_and_edges(2, edges); }
+    else if (mode == "invalid-bipartite-partition") cp::random_bipartite_graph(4, 5, 0);
+    else if (mode == "invalid-bipartite-negative-partition") cp::random_bipartite_graph(4, -1, 0);
+    else if (mode == "invalid-bipartite-negative-size") cp::random_bipartite_graph(-1, 0, 0);
+    else if (mode == "invalid-bipartite-edges") cp::random_bipartite_graph(4, 2, 5);
+    else if (mode == "invalid-bipartite-negative-edges") cp::random_bipartite_graph(4, 2, -1);
+    else if (mode == "invalid-bipartite-connected") cp::connected_bipartite_graph(4, 2, 2);
+    else if (mode == "invalid-bipartite-empty-side") cp::connected_bipartite_graph(4, 0, 3);
+    else if (mode == "invalid-bipartite-empty-connected") cp::connected_bipartite_graph(0, 0, 0);
     else quitf(_fail, "unknown test mode");
     if (mode != "sample") println("PASS", mode);
 }

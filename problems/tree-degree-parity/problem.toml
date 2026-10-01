@@ -1,0 +1,99 @@
+schemaVersion = 1
+draft = false
+name = "cp-library-tree-degree-parity"
+description = "Select tree edges so each vertex has a prescribed degree parity."
+created = "2026-09-30"
+tags = ["trees", "graphs", "constructive algorithms"]
+
+[info]
+inputFile = "stdin"
+outputFile = "stdout"
+interactive = false
+wellFormed = true
+skipDuplicatedTestsValidation = false
+timeLimit = 1000
+memoryLimit = 256
+
+[statements.english]
+encoding = "UTF-8"
+name = "Tree Degree Parity"
+legend = "statements/english/legend.tex"
+input = "statements/english/input.tex"
+output = "statements/english/output.tex"
+notes = "statements/english/notes.tex"
+tutorial = "statements/english/tutorial.tex"
+
+[[files]]
+type = "resource"
+name = "testlib.h"
+path = "../../include/testlib.h"
+
+[[files]]
+type = "resource"
+name = "testlib_ext.h"
+path = "../../include/testlib_ext.h"
+
+[[files]]
+type = "source"
+name = "gen.cpp"
+path = "generators/gen.cpp"
+sourceType = "cpp.g++17"
+
+[[files]]
+type = "source"
+name = "validator.cpp"
+path = "validators/validator.cpp"
+sourceType = "cpp.g++17"
+
+[[files]]
+type = "source"
+name = "checker.cpp"
+path = "checkers/checker.cpp"
+sourceType = "cpp.g++17"
+
+[assets]
+validator = "validator.cpp"
+checker = "checker.cpp"
+
+[[solutions]]
+name = "main.cpp"
+path = "solutions/main.cpp"
+tag = "MA"
+sourceType = "cpp.g++17"
+
+[[solutions]]
+name = "reference.cpp"
+path = "solutions/reference.cpp"
+tag = "OK"
+sourceType = "cpp.g++17"
+
+[[solutions]]
+name = "wrong.cpp"
+path = "solutions/wrong.cpp"
+tag = "WA"
+sourceType = "cpp.g++17"
+
+[testsets.tests]
+script = "tests/doall.txt"
+
+[[testsets.tests.manualTests]]
+index = 1
+input = "tests/manual/01.in"
+output = "tests/manual/01.ans"
+useInStatements = true
+description = "First example"
+
+[[testsets.tests.manualTests]]
+index = 2
+input = "tests/manual/02.in"
+output = "tests/manual/02.ans"
+useInStatements = true
+description = "Impossible parity vector"
+
+[selfTests]
+validator = "tests/validator/cases.json"
+checker = "tests/checker/cases.json"
+
+[verification]
+oracle = "solutions/oracle.py"
+stressGenerator = "tests/stress.py"

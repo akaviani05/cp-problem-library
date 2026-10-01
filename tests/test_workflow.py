@@ -293,6 +293,62 @@ class RemoteContracts(Fixture):
         with self.assertRaisesRegex(Error, "conflict"):
             sync.upload(self.problem, self.api, {})
 
+    def test_commented_recipe_uploads_commands_and_resumes(self):
+        script = self.problem.file(self.problem.config["testsets"]["tests"]["script"])
+        commands = [line for line in script.read_text().splitlines()
+                    if line.strip() and not line.lstrip().startswith("#")]
+        original = "# local documentation\n\n" + "\n".join(reversed(commands)) + "\n  # final comment\n"
+        script.write_text(original)
+        self.evidence()
+        self.api.changes, _ = sync.operations(self.problem, self.api.remote)
+        save = next(params for method, params, _, _ in self.api.changes if method == "problem.saveScript")
+        lines = save["source"].splitlines()
+        self.assertTrue(lines)
+        self.assertTrue(all(line.strip() and not line.lstrip().startswith("#") for line in lines))
+        self.assertTrue(all(line.split()[-2] == ">" and line.split()[-1].isdigit() for line in lines))
+        indices = [int(line.split()[-1]) for line in lines]
+        self.assertEqual(indices, sorted(indices))
+        self.api.fail_after = "problem.saveScript"
+        with self.assertRaisesRegex(Error, "lost asset"):
+            sync.upload(self.problem, self.api, {})
+        state = sync.upload(self.problem, self.api, {})
+        self.assertEqual(state["stage"], "committed")
+        self.assertEqual(self.api.calls.count("problem.saveScript"), 1)
+        self.assertEqual(script.read_text(), original)
+
+    def test_readback_mismatch_reports_asset_path_without_content(self):
+        original = self.api.problem
+
+        def mutate(state, method, **params):
+            result = original(state, method, **params)
+            if method == "problem.saveScript":
+                self.api.remote["script"] = "private remote edit"
+            return result
+
+        self.api.problem = mutate
+        with self.assertRaisesRegex(Error, "readback differs at script") as caught:
+            sync.upload(self.problem, self.api, {})
+        self.assertNotIn("private remote edit", str(caught.exception))
+        self.assertNotIn("problem.commitChanges", self.api.calls)
+        with self.assertRaisesRegex(Error, "pending upload at script"):
+            sync.upload(self.problem, self.api, {})
+
+    def test_statement_punctuation_matches_polygon_readback(self):
+        fragment = self.problem.file("statements/english/output.tex")
+        original = fragment.read_text() + '\nPrint \u201cAlice\u201d \u2014 the winner.\n'
+        fragment.write_text(original)
+        self.evidence()
+        self.api.changes, _ = sync.operations(self.problem, self.api.remote)
+        save = next(params for method, params, _, _ in self.api.changes if method == "problem.saveStatement")
+        self.assertIn('Print "Alice" --- the winner.\n', save["output"])
+        self.api.fail_after = "problem.saveStatement"
+        with self.assertRaisesRegex(Error, "lost asset"):
+            sync.upload(self.problem, self.api, {})
+        state = sync.upload(self.problem, self.api, {})
+        self.assertEqual(state["stage"], "committed")
+        self.assertEqual(self.api.calls.count("problem.saveStatement"), 1)
+        self.assertEqual(fragment.read_text(), original)
+
     def test_local_only_fixture_edit_can_resume_same_remote_payload(self):
         self.api.fail_after = "problem.saveFile"
         with self.assertRaises(Error):

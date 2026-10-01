@@ -1,0 +1,17 @@
+[
+  {"name":"minimum isolated vertex","input":"1 0\n","verdict":"VALID"},
+  {"name":"maximum vertex bound","input":"200000 0\n","verdict":"VALID"},
+  {"name":"complete three vertex graph","input":"3 3\n1 2\n2 3\n1 3\n","verdict":"VALID"},
+  {"name":"reversed edge is duplicate","input":"3 2\n1 2\n2 1\n","verdict":"INVALID"},
+  {"name":"self loop","input":"2 1\n1 1\n","verdict":"INVALID"},
+  {"name":"zero vertices","input":"0 0\n","verdict":"INVALID"},
+  {"name":"vertex count above limit","input":"200001 0\n","verdict":"INVALID"},
+  {"name":"edge count above limit","input":"3 200001\n","verdict":"INVALID"},
+  {"name":"too many edges","input":"2 2\n1 2\n1 2\n","verdict":"INVALID"},
+  {"name":"vertex out of range","input":"3 1\n1 4\n","verdict":"INVALID"},
+  {"name":"negative edge count","input":"3 -1\n","verdict":"INVALID"},
+  {"name":"missing edge endpoint","input":"2 1\n1\n","verdict":"INVALID"},
+  {"name":"wrong separator","input":"2\t0\n","verdict":"INVALID"},
+  {"name":"trailing token","input":"1 0\nextra\n","verdict":"INVALID"},
+  {"name":"empty input","input":"","verdict":"INVALID","polygon":false}
+]

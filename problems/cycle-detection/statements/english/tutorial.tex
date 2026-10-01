@@ -1,0 +1,5 @@
+Build an adjacency list and run depth-first search from every unvisited vertex. When traversing an edge from $v$ to $u$, visit $u$ if it is unvisited and record $v$ as its parent. If $u$ has already been visited and $u$ is not the parent of $v$, the edge closes a cycle with the DFS-tree path between $u$ and $v$. Output that path's vertices in order. If no such edge is found, every connected component is a tree (including isolated vertices), so the graph is a forest.
+
+To recover the cycle, climb parent links from both endpoints until their paths meet at a common ancestor. The tree path between the endpoints together with the detected edge is a simple cycle. The parent edge is ignored because every tree edge is seen once from each endpoint.
+
+The traversal and cycle recovery take $O(n+m)$ time and use $O(n+m)$ memory.

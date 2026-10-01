@@ -1,0 +1,7 @@
+Let $d$ be the distance between the two pieces. The player to move wins exactly when $d$ is even.
+
+To see why, consider a player whose turn begins at an even distance. The distance is at least $2$, so that player's piece has a legal move along the unique path toward the other piece. After that move, the opponent's turn begins at an odd distance. If the opponent moves toward the chaser, they advance along the same path, and the chaser's next move continues forward along that path. Otherwise, the path from the chaser to the opponent's new position goes through the opponent's old position, so the chaser's next move follows that forward branch toward the old position. The opponent cannot move through or onto the chaser's occupied vertex. In either case, the chaser never reverses the edge they just used. An infinite walk without immediate reversals cannot exist in a finite tree. Thus the opponent eventually has no legal move.
+
+For an odd distance, the player to move either has no legal move and loses, or makes a move that leaves an even distance for the opponent. So the player who starts at an even distance wins, and the player who starts at an odd distance loses. Since Alice moves first, output Alice exactly when the distance from $x$ to $y$ is even.
+
+Run breadth-first search from $x$ and inspect the parity of the distance to $y$. The running time is $O(n)$ and the memory usage is $O(n)$.
